@@ -15,7 +15,13 @@ gulp.task('precommit', () => {
     }
     const gitignore = config.specificGitignore
         || path.resolve(config.context, '.gitignore');
-    const ignoreGlobs = parseGitignore(gitignore);
+    let ignoreGlobs;
+    try {
+        ignoreGlobs = parseGitignore(gitignore, { negate: true });
+    } catch (err) {
+        ignoreGlobs = [];
+    }
+
     // Fix end-of-line issue with gitignore-globs library
     ignoreGlobs.forEach( (glob, idx) => ignoreGlobs[idx] = glob.replace('\r', '') );
     ignoreGlobs.push('**/node_modules/**');

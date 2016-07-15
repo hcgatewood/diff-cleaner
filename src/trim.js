@@ -1,10 +1,11 @@
-let config = require('./config.js'),
+let path = require('path'),
     gulp = require('gulp'),
     eol = require('gulp-eol'),
     replace = require('gulp-replace'),
     whitespace = require('gulp-whitespace'),
     glob = require('glob'),
-    parseGitignore = require('gitignore-globs');
+    parseGitignore = require('gitignore-globs'),
+    config = require('./config.js');
 
 gulp.task('trim', () => {
     console.log('\n-> Trimming whitespace and enforcing EOF newlines\n');
@@ -13,7 +14,12 @@ gulp.task('trim', () => {
 
     const gitignore = config.specificGitignore
         || path.resolve(config.context, '.gitignore');
-    const ignoreGlobs = parseGitignore(gitignore, { negate: true });
+    let ignoreGlobs;
+    try {
+        ignoreGlobs = parseGitignore(gitignore, { negate: true });
+    } catch (err) {
+        ignoreGlobs = [];
+    }
     // Fix end-of-line issue with gitignore-globs library
     ignoreGlobs.forEach( (glob, idx) => ignoreGlobs[idx] = glob.replace('\r', '') );
     const defaultGlobs = ['**/*.+' + config.filetypes, '!**/node_modules/**'];
