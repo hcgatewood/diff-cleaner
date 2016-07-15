@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     parseGitignore = require('gitignore-globs'),
     Validator = require('lintspaces');
 
-var INCLUDED_FILETYPES = '(ts|js|css|scss)';
+var INCLUDED_FILETYPES = '(ts|js|css|scss|html)';
 
 gulp.task('check:whitespace', () => {
     console.log('\n-> Running precommit hook\n');

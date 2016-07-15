@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     glob = require('glob'),
     parseGitignore = require('gitignore-globs');
 
-var INCLUDED_FILETYPES= '(ts|js|css|scss)';
+var INCLUDED_FILETYPES= '(ts|js|css|scss|html)';
 
 gulp.task('trim:whitespace', () => {
     console.log('\n-> Trimming whitespace and enforcing EOF newlines\n');
