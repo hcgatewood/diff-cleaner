@@ -4,8 +4,12 @@ De-noisify git diffs.
 
 Enforce trailing whitespace and EOF newlines on git pre-commit hooks.
 
-# Usage
+# Features
+Reading through git diffs should be a straightforward experience. Unfortunately, meaningless differences in trailing whitespace and end-of-file newlines clutters up diffs. `diff-cleaner` removes this noise.
+- Adds a git pre-commit hook which checks for trailing whitespace and EOF newline, failing the commit as-necessary with a message to use `npm run trim`
+- Provides an `npm run trim` command which cleans all files
 
+# Usage
 - `npm install --save-dev diff-cleaner`
 - `npm install --save-dev husky`
 - Add the following to your `gulpfile.js`:
