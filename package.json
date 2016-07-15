@@ -3,20 +3,25 @@
   "version": "1.0.12",
   "description": "De-noisify git diffs.",
   "author": "Hunter Gatewood",
-  "license": "SEE LICENSE IN ./LICENSE.txt",
+  "license": "MIT",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hcgatewood/diff-cleaner"
+  },
   "scripts": {
-    "install": "node ./scripts/install.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "node ./scripts/install.js"
   },
   "dependencies": {
     "gitignore-globs": "^0.1.1",
     "glob": "^7.0.5",
     "gulp": "^3.9.1",
     "gulp-eol": "^0.1.2",
-    "gulp-print": "^2.0.1",
     "gulp-replace": "^0.5.4",
     "gulp-whitespace": "^0.1.0",
     "lintspaces": "^0.5.0"
+  },
+  "devDependencies": {
+    "gulp-jasmine": "^2.4.0"
   }
 }
