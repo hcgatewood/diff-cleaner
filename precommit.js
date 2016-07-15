@@ -2,7 +2,7 @@
 
 var gulp = require('gulp'),
     glob = require('glob'),
-    util = require('util'),
+    // util = require('util'),
     parseGitignore = require('gitignore-globs'),
     Validator = require('lintspaces');
 
@@ -34,7 +34,7 @@ gulp.task('check:whitespace', () => {
         }
 
         var invalidFiles = validator.getInvalidFiles();
-        console.log(util.inspect(invalidFiles, { depth: null }));
+        // console.log(util.inspect(invalidFiles, { depth: null }));
         var isInvalid = Object.keys(invalidFiles).length > 0;
         if (isInvalid) {
             console.log('\n-> Found whitespace issues in the following files:\n');
