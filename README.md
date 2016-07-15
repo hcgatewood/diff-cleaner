@@ -1,4 +1,4 @@
-# pretty-please
+# diff-cleaner
 
 A library for de-noisifying git diffs.
 
@@ -6,12 +6,12 @@ Enforces trailing whitespace and EOF newlines on git pre-commit hooks.
 
 # Usage
 
-- `npm install --save-dev pretty-please`
+- `npm install --save-dev diff-cleaner`
 - `npm install --save-dev husky`
 - Add the following to your `gulpfile.js`:
 ```javascript
-require('./node_modules/pretty-please/precommit.js');
-require('./node_modules/pretty-please/trim.js');
+require('./node_modules/diff-cleaner/precommit.js');
+require('./node_modules/diff-cleaner/trim.js');
 ```
 - Add the following to your `package.json` scripts:
 ```json
