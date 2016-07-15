@@ -17,7 +17,7 @@ gulp.task('precommit', () => {
         || path.resolve(config.context, '.gitignore');
     let ignoreGlobs;
     try {
-        ignoreGlobs = parseGitignore(gitignore, { negate: true });
+        ignoreGlobs = parseGitignore(gitignore);
     } catch (err) {
         ignoreGlobs = [];
     }
@@ -29,7 +29,7 @@ gulp.task('precommit', () => {
     glob('**/*.+' + config.filetypes, { ignore: ignoreGlobs }, (err, files) => {
         if (err) {
             console.error(err);
-            process.exit(0);
+            process.exit(1);
         }
         const validator = new Validator({
             newline: true,

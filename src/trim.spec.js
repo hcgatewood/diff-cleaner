@@ -10,7 +10,7 @@ const path = require('path'),
 
 // Each spec references a specific file. File extensions are unique.
 describe('Trim', () => {
-    const testDir = path.resolve(cleanConfig.context, 'test');
+    const testDir = path.resolve(cleanConfig.context, 'test/');
     const editedDir = path.resolve(testDir, 'edited');
     const afterDir = path.resolve(testDir, 'after');
     let config;
@@ -31,8 +31,8 @@ describe('Trim', () => {
     it('should remove trailing whitespace', () => {
         env.DC_FILETYPES = '(js)';
         const file = 'trailing-whitespace.js';
-        const foo = spawnSync('touch', ['foobar.txt']);
-        const trim = spawnSync('gulp', ['trim'], { env: env });
+        console.log('*** testDir:', testDir);
+        const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
         console.log(trim.output.toString());
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
@@ -53,7 +53,7 @@ describe('Trim', () => {
     it('should remove no EOF newline', () => {
         env.DC_FILETYPES = '(html)';
         const file = 'no-newline.html';
-        const trim = spawnSync('gulp', ['trim'], { env: env });
+        const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
             console.log(trim.stderr.toString('utf8'));
@@ -73,7 +73,7 @@ describe('Trim', () => {
     it('should remove extraneous newlines', () => {
         env.DC_FILETYPES = '(json)';
         const file = 'extraneous-newlines.json';
-        const trim = spawnSync('gulp', ['trim'], { env: env });
+        const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
             console.log(trim.stderr.toString('utf8'));
@@ -93,7 +93,7 @@ describe('Trim', () => {
     it('should not touch ignored filetypes', () => {
         env.DC_FILETYPES = undefined;
         const file = 'dont-change.md';
-        const trim = spawnSync('gulp', ['trim'], { env: env });
+        const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
             console.log(trim.stderr.toString('utf8'));
@@ -113,7 +113,7 @@ describe('Trim', () => {
     it('should not touch files in .gitignore', () => {
         env.DC_FILETYPES = '(css)';
         const file = 'ignore-me.css';
-        const trim = spawnSync('gulp', ['trim'], { env: env });
+        const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
             console.log(trim.stderr.toString('utf8'));
