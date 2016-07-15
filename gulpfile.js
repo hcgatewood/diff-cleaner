@@ -2,4 +2,4 @@
 
 require('./build-scripts/test.js');
 require('./index.js');
-// require('./trim.js');
+require('./index.js').config.customGlobs = ['!**/test/**'];

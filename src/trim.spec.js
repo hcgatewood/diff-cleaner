@@ -11,13 +11,13 @@ const path = require('path'),
 // Each spec references a specific file. File extensions are unique.
 describe('Trim', () => {
     const testDir = path.resolve(cleanConfig.context, 'test/');
-    const editedDir = path.resolve(testDir, 'edited');
+    const editedDir = path.resolve(testDir, 'edited/');
     const afterDir = path.resolve(testDir, 'after');
     let config;
     let env;
 
     beforeEach( () => {
-        rimraf(`${editedDir}/*`);
+        rimraf(editedDir);
         config = JSON.parse(JSON.stringify(cleanConfig));  // deep copy
         env = process.env;
         env = extend(env, {
@@ -31,16 +31,14 @@ describe('Trim', () => {
     it('should remove trailing whitespace', () => {
         env.DC_FILETYPES = '(js)';
         const file = 'trailing-whitespace.js';
-        console.log('*** testDir:', testDir);
         const trim = spawnSync('gulp', ['trim'], { env: env, cwd: testDir });
-        console.log(trim.output.toString());
         if (trim.status !== 0) {
             console.log(trim.stdout.toString('utf8'));
             console.log(trim.stderr.toString('utf8'));
             fail('Did not exit with status 0');
         }
-        const output = fs.readFileSync(path.resolve(editedDir, file));
-        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file));
+        const output = fs.readFileSync(path.resolve(editedDir, file)).toString();
+        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file)).toString();
         if (output !== desiredOutput) {
             console.log('Trim output:');
             console.log(output);
@@ -59,8 +57,8 @@ describe('Trim', () => {
             console.log(trim.stderr.toString('utf8'));
             fail('Did not exit with status 0');
         }
-        const output = fs.readFileSync(path.resolve(editedDir, file));
-        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file));
+        const output = fs.readFileSync(path.resolve(editedDir, file)).toString();
+        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file)).toString();
         if (output !== desiredOutput) {
             console.log('Trim output:');
             console.log(output);
@@ -79,8 +77,8 @@ describe('Trim', () => {
             console.log(trim.stderr.toString('utf8'));
             fail('Did not exit with status 0');
         }
-        const output = fs.readFileSync(path.resolve(editedDir, file));
-        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file));
+        const output = fs.readFileSync(path.resolve(editedDir, file)).toString();
+        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file)).toString();
         if (output !== desiredOutput) {
             console.log('Trim output:');
             console.log(output);
@@ -99,15 +97,12 @@ describe('Trim', () => {
             console.log(trim.stderr.toString('utf8'));
             fail('Did not exit with status 0');
         }
-        const output = fs.readFileSync(path.resolve(editedDir, file));
-        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file));
-        if (output !== desiredOutput) {
-            console.log('Trim output:');
-            console.log(output);
-            console.log('\nDesired output:');
-            console.log(desiredOutput);
-            fail('Incorrectly modified file');
+        try {
+            const output = fs.readFileSync(path.resolve(editedDir, file)).toString();
+        } catch (err) {
+            return;
         }
+        fail('Modified file when it should not have');
     });
 
     it('should not touch files in .gitignore', () => {
@@ -119,14 +114,11 @@ describe('Trim', () => {
             console.log(trim.stderr.toString('utf8'));
             fail('Did not exit with status 0');
         }
-        const output = fs.readFileSync(path.resolve(editedDir, file));
-        const desiredOutput = fs.readFileSync(path.resolve(afterDir, file));
-        if (output !== desiredOutput) {
-            console.log('Trim output:');
-            console.log(output);
-            console.log('\nDesired output:');
-            console.log(desiredOutput);
-            fail('Incorrectly modified file');
+        try {
+            const output = fs.readFileSync(path.resolve(editedDir, file)).toString();
+        } catch (err) {
+            return;
         }
+        fail('Modified file when it should not have');
     });
 });

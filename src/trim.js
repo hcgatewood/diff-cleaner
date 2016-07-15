@@ -7,15 +7,11 @@ const path = require('path'),
     parseGitignore = require('gitignore-globs'),
     config = require('./config.js');
 
-const print = require('gulp-print');
-const mkdir = require('fs').mkdirSync;
-
 gulp.task('trim', () => {
     console.log('\n-> Trimming whitespace and enforcing EOF newlines\n');
+
+    // Defaults to chdir(process.cwd())
     process.chdir(config.context);
-    console.log('config.context:', config.context);
-    console.log('cwd:', process.cwd());
-    console.log('outDir:', config.outDir);
 
     const outDir = config.outDir || config.context;
 
@@ -31,12 +27,13 @@ gulp.task('trim', () => {
     // Fix end-of-line issue with gitignore-globs library
     ignoreGlobs.forEach( (glob, idx) => ignoreGlobs[idx] = glob.replace('\r', '') );
     const defaultGlobs = ['**/*.+' + config.filetypes, '!**/node_modules/**'];
-    const globs = defaultGlobs.concat(ignoreGlobs);
+    let globs = defaultGlobs.concat(ignoreGlobs);
+    if (config.customGlobs) {
+        globs = globs.concat(config.customGlobs);
+    }
 
-    console.log('\n\n*** outDir:', outDir);
     const regex = new RegExp(`(${config.osEol}|\n|\r)*$`);
     return gulp.src(globs)
-        .pipe(print())
         // Fix whitespace
         .pipe(whitespace({
             removeTrailing: true

@@ -7,7 +7,7 @@ const path = require('path'),
     cleanConfig = require(path.resolve(__dirname, 'config.js'));
 
 // Each spec references a specific file. File extensions are unique.
-xdescribe('Precommit', () => {
+describe('Precommit', () => {
     const testDir = path.resolve(cleanConfig.context, 'test');
     let config;
     let env;

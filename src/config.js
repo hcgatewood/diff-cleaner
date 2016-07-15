@@ -6,5 +6,6 @@ module.exports = {
     context: process.env.DC_CONTEXT || process.cwd(),
     osEol: process.env.SPECIFIC_EOL || os.EOL,
     specificGitignore: process.env.DC_SPECIFIC_GITIGNORE,
-    outDir: process.env.DC_OUTDIR
+    outDir: process.env.DC_OUTDIR,
+    customGlobs: null
 };
