@@ -1,8 +1,8 @@
 # diff-cleaner
 
-A library for de-noisifying git diffs.
+De-noisify git diffs.
 
-Enforces trailing whitespace and EOF newlines on git pre-commit hooks.
+Enforce trailing whitespace and EOF newlines on git pre-commit hooks.
 
 # Usage
 
