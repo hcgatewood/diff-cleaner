@@ -27,5 +27,8 @@ require('./node_modules/diff-cleaner/trim.js');
 ## Overriding pre-commit hook
 To override the pre-commit hook, use `git commit --no-verify`.
 
+## Standardizing newlines
+See [dealing with line endings](https://help.github.com/articles/dealing-with-line-endings/) for how to standardize line endings using a `.gitattributes` file.
+
 ## VS Code
 Add `"files.trimTrailingWhitespace": true` to your user settings document to strip trailing whitespace automatically.
