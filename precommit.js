@@ -1,5 +1,3 @@
-/* Copyright (c) Microsoft Corporation. All Rights Reserved. */
-
 var gulp = require('gulp'),
     glob = require('glob'),
     // util = require('util'),
