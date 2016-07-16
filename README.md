@@ -16,8 +16,8 @@ Reading through git diffs should be a straightforward experience. Unfortunately,
 - `npm install --save-dev husky`
 - Add the following to your `gulpfile.js`:
 ```javascript
-require('./diff-cleaner/precommit.js');
-require('./diff-cleaner/trim.js');
+require('diff-cleaner/precommit.js');
+require('diff-cleaner/trim.js');
 ```
 - Add the following to your `package.json` scripts:
 ```json
