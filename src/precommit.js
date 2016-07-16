@@ -71,6 +71,7 @@ function negateGlobs(globs) {
             globs[idx] = '!' + glob;
         }
     });
+    return globs;
 }
 
 module.exports = ['precommit'];
