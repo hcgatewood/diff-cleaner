@@ -1,5 +1,5 @@
 module.exports = {
-    precommit: require('./src/precommit.js'),
-    trim: require('./src/trim.js'),
-    config: require('./src/config.js')
+    precommit: require('./precommit.js'),
+    trim: require('./trim.js'),
+    config: require('./config.js')
 }

@@ -12,6 +12,7 @@
   "scripts": {
     "install": "node ./scripts/install.js",
     "precommit": "gulp precommit",
+    "test": "gulp test",
     "trim": "gulp trim"
   },
   "dependencies": {
