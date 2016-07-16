@@ -1,6 +1,6 @@
 {
   "name": "diff-cleaner",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "De-noisify git diffs.",
   "author": "Hunter Gatewood",
   "license": "MIT",
