@@ -28,6 +28,8 @@ gulp.task('trim', () => {
     ignoreGlobs.forEach( (glob, idx) => ignoreGlobs[idx] = glob.replace('\r', '') );
     const defaultGlobs = ['**/*.+' + config.filetypes, '!**/node_modules/**'];
     let globs = defaultGlobs.concat(ignoreGlobs);
+
+    // Add globs from config
     if (config.customGlobs) {
         globs = globs.concat(config.customGlobs);
     }

@@ -26,6 +26,11 @@ gulp.task('precommit', () => {
     ignoreGlobs.forEach( (glob, idx) => ignoreGlobs[idx] = glob.replace('\r', '') );
     ignoreGlobs.push('**/node_modules/**');
 
+    // Add negation of config globs
+    if (config.customGlobs) {
+        ignoreGlobs = ignoreGlobs.concat(negateGlobs(config.customGlobs));
+    }
+
     glob('**/*.+' + config.filetypes, { ignore: ignoreGlobs }, (err, files) => {
         if (err) {
             console.error(err);
@@ -57,5 +62,15 @@ gulp.task('precommit', () => {
         }
     });
 });
+
+function negateGlobs(globs) {
+    globs.forEach( (idx, glob) => {
+        if (glob[0] === '!') {
+            globs[idx] = glob.substring(1);
+        } else {
+            globs[idx] = '!' + glob;
+        }
+    });
+}
 
 module.exports = ['precommit'];
