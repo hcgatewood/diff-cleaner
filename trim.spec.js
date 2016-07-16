@@ -22,7 +22,7 @@ describe('Trim', () => {
         env = process.env;
         env = extend(env, {
             DC_CONTEXT: testDir,
-            DC_SPECIFIC_GITIGNORE: path.resolve(testDir, '.gitignore'),
+            DC_SPECIFIC_GITIGNORE: path.resolve(testDir, 'gitignore'),
             DC_OUTDIR: editedDir,
             DC_LOG_ERRORS: true
         });
