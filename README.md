@@ -2,7 +2,7 @@
 
 De-noisify git diffs.
 
-Enforce trailing whitespace and EOF newlines with git pre-commit hooks.
+[![npm version](https://img.shields.io/npm/v/diff-cleaner.svg)](https://www.npmjs.com/package/diff-cleaner)
 
 # Features
 Reading through git diffs should be a straightforward experience. Unfortunately, meaningless differences in trailing whitespace and end-of-file newlines clutters up diffs. `diff-cleaner` removes this noise.
