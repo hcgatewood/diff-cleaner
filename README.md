@@ -35,7 +35,7 @@ require('diff-cleaner').config.filetypes = '(html|css)';
 
 - `filetypes`. The file extensions that will be linted and updated. Must be in the form _e.g._ `'(js|py|txt)'`. Defaults to `'(ts|js|css|scss|html|json)'`.
 - `logErrors`. When truthy, log the full issue report on precommit linting errors.
-- `specifigGitignore`. Use a `.gitignore` other than in the root directory.
+- `specificGitignore`. Use a `.gitignore` other than in the root directory.
 - `customGlobs`. Any custom globs to consider during precommit and trim.
 
 # Notes
